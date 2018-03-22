@@ -1,13 +1,15 @@
 <?php 
 	
 	require_once("vendor/autoload.php");
-	require_once("vendor/hcodebr/phpclasses/src/DB/Sql.php");
-	$app = new \Slim\Slim();
+	require 'vendor/hcodebr/phpclasses/src/Page.php';
+	use \Slim\Slim;
+	
+
+	$app = new Slim();
 	$app->config('debug', true);
 	$app->get('/',function(){
-		$sql = new Sql();
-		$results = $sql->select("select * from tb_persons");
-		echo json_encode($results);
+		$page = new Page();
+		$page->setTpl("index");
 		
 	});
 	$app->run();
